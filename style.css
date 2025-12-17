@@ -1,0 +1,188 @@
+/* ? ============ Root Variable and Fonts ================= */
+:root {
+    /* * palette 1 */
+    --primary: #F0EDE5;
+    --glass: rgb(240, 237, 229, 0.8);
+    --green: #004643;
+
+    /* * palette 2 */
+    --brown: #4E1F00;
+
+    /* * palette 3 */
+    --rich-blue: #191265;
+
+    /* * palette 4 */
+    --rich-burgundy: #7f071e;
+
+    /* * Font Sizes */
+    --font-3xs: 0.5rem; /* 8px */
+    --font-2xs: 0.625rem; /* 10px */
+    --font-xs: 0.75rem; /* 12px */
+    --font-sm: 0.875rem; /* 14px */
+    --font-base: 1rem; /* 16px (default) */
+    --font-lg: 1.25rem; /* 20px */
+    --font-xl: 1.5rem; /* 24px */
+    --font-2xl: 1.875rem; /* 30px */
+    --font-3xl: 2.25rem; /* 36px */
+    --font-4xl: 2.5rem; /* 40px */
+    --font-5xl: 3rem; /* 48px */
+    --font-6xl: 3.75rem; /* 60px */
+    --font-7xl: 4.5rem; /* 72px */
+    --font-8xl: 6rem; /* 96px */
+    --font-9xl: 8rem; /* 128px */
+}
+
+@font-face {
+    font-family: Aeonik;
+    src: url(fonts/AeonikTRIAL-Light.otf);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Aeonik;
+    src: url(fonts/AeonikTRIAL-Regular.otf);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Aeonik;
+    src: url(fonts/AeonikTRIAL-Bold.otf);
+    font-weight: 700;
+}
+
+/* ? ============ Global Css ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background-color: var(--primary);
+    color: var(--green);
+    height: 100%;
+    user-select: none;
+    text-rendering: optimizeSpeed;
+    width: 100%;
+    font-family: Aeonik;
+}
+
+main {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+}
+
+nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: var(--glass);
+    color: var(--green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--font-sm) var(--font-lg);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+    backdrop-filter: blur(var(--font-xs));
+    -webkit-backdrop-filter: blur(var(--font-xs));
+    z-index: 10;
+}
+.nav-hidden {
+    transform: translateY(-100%);
+}
+
+nav .icons {
+    font-size: var(--font-lg);
+    cursor: pointer;
+    display: flex;
+    gap: var(--font-lg);
+}
+
+/* ? ================ Banner ================== */
+#banner {
+    margin: auto;
+    border-radius: var(--font-base);
+    overflow: hidden;
+    margin-bottom: var(--font-xl);
+     padding: var(--font-sm) var(--font-lg);
+}
+
+#banner img {
+    height: 40vh;
+    width: 100vw;
+    object-fit: cover;
+    object-position: center;
+}
+
+/* ? ================== Bento ==================== */
+#bento {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-areas:
+        "to-do to-do planner planner"
+        "qoute timer timer goals";
+    gap: var(--font-base);
+     padding: var(--font-sm) var(--font-lg);
+}
+
+.elem {
+    position: relative;
+    height: 20vw;
+    border-radius: var(--font-base);
+    overflow: hidden;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.elem img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.elem h2 {
+    position: absolute;
+    bottom: var(--font-base);
+    right: var(--font-base);
+}
+
+.elem:active {
+    scale: 0.97;
+}
+
+.to-do {
+    grid-area: to-do;
+}
+
+.planner {
+    grid-area: planner;
+}
+
+.qoute {
+    grid-area: qoute;
+}
+
+.timer {
+    grid-area: timer;
+}
+
+.goals {
+    grid-area: goals;
+}
+
+/* ? ======================== Bento Pages ========================= */
+.bento-pages {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background-color: var(--green);
+    color: var(--primary);
+    font-size: var(--font-2xl);
+    display: none;
+    z-index: 99;
+}
