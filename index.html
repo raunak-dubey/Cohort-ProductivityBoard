@@ -25,42 +25,100 @@
         </section>
         <!-- ? ========================== Bento ======================== -->
         <section id="bento">
-            <div class="elem to-do" id="0">
-                <img src="images/to-do list.jpg" alt="To-Do" />
+            <div class="elem to-do" data-page="todo" role="button" tabindex="0">
+                <img src="images/to-do list.jpg" alt="to-do" />
                 <h2>To-Do List</h2>
             </div>
-            <div class="elem planner" id="1">
-                <img src="images/planner.jpg" alt="To-Do" />
+            <div class="elem planner" data-page="planner" role="button" tabindex="0">
+                <img src="images/planner.jpg" alt="planner" />
                 <h2>Daily Planner</h2>
             </div>
-            <div class="elem qoute" id="2">
-                <img src="images/qoute.jpg" alt="To-Do" />
+            <div class="elem qoute" data-page="quote" role="button" tabindex="0">
+                <img src="images/qoute.jpg" alt="qoute" />
                 <h2>Quote</h2>
             </div>
-            <div class="elem timer" id="3">
-                <img src="images/timer.jpg" alt="To-Do" />
+            <div class="elem timer" data-page="timer" role="button" tabindex="0">
+                <img src="images/timer.jpg" alt="timer" />
                 <h2>Pomodoro Timer</h2>
             </div>
-            <div class="elem goals" id="4">
-                <img src="images/Goals.jpg" alt="To-Do" />
+            <div class="elem goals" data-page="goals" role="button" tabindex="0">
+                <img src="images/Goals.jpg" alt="goals" />
                 <h2>Daily Goals</h2>
             </div>
         </section>
         <!-- ? ========================== Bento Pages ====================== -->
-        <section class="bento-pages">
-            <h1>To-do List</h1>
+        <section class="bento-pages to-do-page" data-page="todo" tabindex="-1">
+            <div class="todo-wrap">
+                <div class="todo-main">
+                    <h1>Todo List</h1>
+                    <div class="add-task">
+                        <input id="new-task-input" placeholder="+ Add New Task" />
+                    </div>
+
+                    <p class="task-list-empty" hidden>
+                        No tasks yet. Add your first task
+                    </p>
+
+                    <ul class="task-list"></ul>
+                </div>
+
+                <aside class="todo-right">
+                    <div class="task-empty">
+                        <p>Select a task to view details</p>
+                    </div>
+                    <div class="task-panel" style="display:none;">
+                        <input class="task-title" placeholder="Task title" />
+                        <textarea class="task-desc" name="desc" id="desc" placeholder="Description"></textarea>
+
+                        <div class="task-meta">
+                            <label>Priority <select class="task-list-select">
+                                    <option>High</option>
+                                    <option>Medium</option>
+                                    <option>Low</option>
+                                </select></label>
+                            <label>Due <input type="date" class="task-due" /></label>
+                        </div>
+
+                        <div class="tags">
+                            <div class="tag-list">
+                                <button class="btn small">+ Add Tag</button>
+                            </div>
+                        </div>
+
+                        <div class="task-actions">
+                            <button class="btn delete">Delete Task</button>
+                            <button class="btn primary save">Save changes</button>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <button class="back" aria-label="Close">
+                <i class="ri-close-large-line"></i>
+            </button>
         </section>
-        <section class="bento-pages">
+        <section class="bento-pages planner-page" data-page="planner" tabindex="-1">
             <h1>Daily Planner</h1>
+            <button class="back" aria-label="Close">
+                <i class="ri-close-large-line"></i>
+            </button>
         </section>
-        <section class="bento-pages">
+        <section class="bento-pages quote-page" data-page="quote" tabindex="-1">
             <h1>Quotes</h1>
+            <button class="back" aria-label="Close">
+                <i class="ri-close-large-line"></i>
+            </button>
         </section>
-        <section class="bento-pages">
+        <section class="bento-pages timer-page" data-page="timer" tabindex="-1">
             <h1>Pomodoro Timer</h1>
+            <button class="back" aria-label="Close">
+                <i class="ri-close-large-line"></i>
+            </button>
         </section>
-        <section class="bento-pages">
+        <section class="bento-pages goals-page" data-page="goals" tabindex="-1">
             <h1>Daily Goals</h1>
+            <button class="back" aria-label="Close">
+                <i class="ri-close-large-line"></i>
+            </button>
         </section>
     </main>
     <script src="script.js"></script>

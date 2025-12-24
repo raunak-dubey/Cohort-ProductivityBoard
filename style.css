@@ -4,6 +4,7 @@
     --primary: #F0EDE5;
     --glass: rgb(240, 237, 229, 0.8);
     --green: #004643;
+    --accent: #e3e1da;
 
     /* * palette 2 */
     --brown: #4E1F00;
@@ -62,7 +63,6 @@ body {
     background-color: var(--primary);
     color: var(--green);
     height: 100%;
-    user-select: none;
     text-rendering: optimizeSpeed;
     width: 100%;
     font-family: Aeonik;
@@ -103,15 +103,14 @@ nav .icons {
 /* ? ================ Banner ================== */
 #banner {
     margin: auto;
-    border-radius: var(--font-base);
-    overflow: hidden;
     margin-bottom: var(--font-xl);
-     padding: var(--font-sm) var(--font-lg);
+    padding: 0 var(--font-lg) var(--font-sm);
 }
 
 #banner img {
     height: 40vh;
-    width: 100vw;
+    width: 100%;
+    border-radius: var(--font-base);
     object-fit: cover;
     object-position: center;
 }
@@ -129,7 +128,8 @@ nav .icons {
 
 .elem {
     position: relative;
-    height: 20vw;
+    height: 21rem;
+    user-select: none;
     border-radius: var(--font-base);
     overflow: hidden;
     color: var(--primary);
@@ -180,9 +180,213 @@ nav .icons {
     left: 0;
     height: 100vh;
     width: 100%;
+    font-size: var(--font-2xl);
+    display: flex;
+    z-index: 99;
+    background-color: var(--primary);
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--font-sm) var(--font-lg);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: 0.25s ease;
+}
+
+.bento-pages.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* ? ======================== Todo Page ======================== */
+.todo-wrap {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.todo-main {
+    display: flex;
+    flex-direction: column;
+}
+.add-task input{
+    padding: var(--font-3xs);
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid var(--green);
+    outline: none;
+    font-size: var(--font-lg);
+    color: var(--green);
+    width: 50%;
+    margin-top: var(--font-lg);
+}
+.todo-right {
+    background-color: var(--accent);
+    padding: var(--font-lg);
+}
+
+.back {
+    position: absolute;
+    top: var(--font-lg);
+    right: var(--font-lg);
+    font-size: var(--font-xl);
+    cursor: pointer;
+    background: transparent;
+    z-index: 100;
+    border: none;
+}
+
+.task-list {
+    margin-top: var(--font-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-sm);
+    overflow-y: auto;
+    padding-right: var(--font-sm);
+}
+
+.task-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--font-lg);
+    list-style: none;
+    border-radius: var(--font-sm);
+    background-color: var(--accent);
+    padding: var(--font-sm) var(--font-lg);
+    cursor: pointer;
+}
+.task-list li #task-checkbox{
+    width: var(--font-base);
+    height: var(--font-base);
+}
+.task-list li.completed span {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* Empty state */
+.task-empty {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: rgba(0, 70, 67, 0.5);
+    font-size: var(--font-base);
+    text-align: center;
+}
+
+.task-list-empty {
+    margin-top: var(--font-xl);
+    font-size: var(--font-sm);
+    color: rgba(0, 70, 67, 0.5);
+}
+
+/* Panel container */
+.task-panel {
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-base);
+    height: 100%;
+    animation: fadeIn 0.2s ease;
+}
+
+/* Title */
+.task-title {
+    font-size: var(--font-xl);
+    border: none;
+    outline: none;
+    background: transparent;
+    font-weight: 600;
+    color: var(--green);
+}
+
+/* Description */
+.task-desc {
+    resize: none;
+    border-radius: var(--font-sm);
+    padding: var(--font-sm);
+    border: 1px solid rgba(0, 70, 67, 0.2);
+    font-size: var(--font-sm);
+    min-height: 100px;
+    background: transparent;
+}
+
+/* Meta */
+.task-meta {
+    display: flex;
+    gap: var(--font-base);
+}
+
+.task-meta label {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-xs);
+    gap: var(--font-3xs);
+}
+
+.task-meta select,
+.task-meta input {
+    padding: var(--font-3xs);
+    border-radius: var(--font-3xs);
+    border: 1px solid rgba(0, 70, 67, 0.3);
+    background: transparent;
+}
+
+/* Tags */
+.tag-list {
+    display: flex;
+    gap: var(--font-3xs);
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: 4px 8px;
+    border-radius: var(--font-3xs);
+    font-size: var(--font-base);
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 70, 67, 0.15);
+}
+
+/* Actions */
+.task-actions {
+    margin-top: auto;
+    display: flex;
+    gap: var(--font-sm);
+}
+
+.btn {
+    padding: var(--font-3xs) var(--font-sm);
+    border-radius: var(--font-3xs);
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-sm);
+}
+
+.btn.primary {
     background-color: var(--green);
     color: var(--primary);
-    font-size: var(--font-2xl);
-    display: none;
-    z-index: 99;
+}
+
+.btn.delete {
+    background: transparent;
+    color: var(--rich-burgundy);
+}
+
+/* Selected task */
+.task-list li.active {
+    background-color: rgba(0, 70, 67, 0.15);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
