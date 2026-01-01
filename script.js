@@ -1,5 +1,24 @@
 let tasks = [];
-const STORAGE_KEY = 'todo_tasks';
+const Todo_Key = 'todo_tasks';
+const QUOTE_KEY = 'daily_quote';
+
+// ? ========================== Tooltip ======================== //
+const showTooltip = (message, duration = 1500) => {
+    const tooltip = document.getElementById('tooltip');
+    if (!tooltip) return;
+
+    tooltip.textContent = message;
+    tooltip.hidden = false;
+
+    requestAnimationFrame(() => {
+        tooltip.classList.add('show');
+    });
+
+    setTimeout(() => {
+        tooltip.classList.remove('show');
+        setTimeout(() => (tooltip.hidden = true), 200);
+    }, duration);
+};
 
 // ? ========================== Navbar ======================== //
 const Navbar = () => {
@@ -40,6 +59,9 @@ const bentoPage = () => {
         if (target === 'todo') {
             loadTasks();
             renderTasks();
+        }
+        if (target === 'quote') {
+            loadQuote();
         }
 
     };
@@ -134,10 +156,10 @@ const initTodoTasks = () => {
 };
 
 const loadTasks = () => {
-    tasks = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
+    tasks = JSON.parse(localStorage.getItem(Todo_Key)) || [];
 }
 
-const saveTasks = () => localStorage.setItem(STORAGE_KEY, JSON.stringify(tasks));
+const saveTasks = () => localStorage.setItem(Todo_Key, JSON.stringify(tasks));
 
 const renderTasks = () => {
     const list = document.querySelector('.task-list');
@@ -281,8 +303,96 @@ const initDeleteTask = () => {
     });
 }
 
+// ? ========================== Quotes ======================== //
+const today = () => new Date().toISOString().split('T')[0];
+
+const renderQuote = (data) => {
+    if (!data) return;
+
+    const { quote, author, liked } = data;
+    document.querySelector('.quote-text').textContent = `“${quote}”`;
+    document.querySelector('.quote-author').textContent = `— ${author}`;
+
+    const heartIcon = document.querySelector('[aria-label="Like quote"] i');
+    if (!heartIcon) return;
+
+    heartIcon.classList.toggle('ri-heart-line', !liked);
+    heartIcon.classList.toggle('ri-heart-fill', liked);
+};
+
+const loadQuote = async (forceRefresh = false) => {
+    const storedQuote = JSON.parse(localStorage.getItem(QUOTE_KEY));
+    if (storedQuote && storedQuote.date === today() && !forceRefresh) {
+        renderQuote(storedQuote);
+        return;
+    }
+
+     // else fetch new quote
+    try {
+        const response = await fetch('https://dummyjson.com/quotes/random');
+        const data = await response.json();
+
+        const newQuote = {
+            quote: data.quote,
+            author: data.author,
+            date: today(),
+            liked: false
+        };
+
+        localStorage.setItem(QUOTE_KEY, JSON.stringify(newQuote));
+        renderQuote(newQuote);
+    } catch (error) {
+        console.error('Quote fetch failed:', error);
+    }
+};
+
+const refreshBtn = document.querySelector('[aria-label="Refresh quote"]');
+
+if (refreshBtn) {
+    refreshBtn.addEventListener('click', () => loadQuote(true));
+}
+
+const likeBtn = document.querySelector('[aria-label="Like quote"]');
+
+if (likeBtn) {
+    likeBtn.addEventListener('click', () => {
+        const stored = JSON.parse(localStorage.getItem(QUOTE_KEY));
+        if (!stored) return;
+
+        stored.liked = !stored.liked;
+        localStorage.setItem(QUOTE_KEY, JSON.stringify(stored));
+        renderQuote(stored);
+
+        showTooltip(stored.liked ? 'Added to favorites' : 'Removed from favorites');
+    });
+}
+
+
+const copyQuoteToClipboard = () => {
+    const quoteElem = document.querySelector('.quote-text');
+    const authorElem = document.querySelector('.quote-author');
+    if (!quoteElem || !authorElem) return;
+
+    const fullQuote = `${quoteElem.textContent} ${authorElem.textContent}`;
+    navigator.clipboard.writeText(fullQuote).then(() => {
+        showTooltip('Quote copied to clipboard!');
+    }).catch(() => {
+        showTooltip('Failed to copy quote');
+    });
+};
+
+const copyBtn = document.querySelector('[aria-label="Copy quote"]');
+
+if (copyBtn) {
+    copyBtn.addEventListener('click', copyQuoteToClipboard);
+}
+
+
+// * Navbar
 Navbar();
+// * Bento Page
 bentoPage();
+// * Todo Page
 initTodoTasks();
 addTask();
 initTags();

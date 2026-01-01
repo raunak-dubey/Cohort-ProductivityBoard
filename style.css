@@ -74,6 +74,28 @@ main {
     width: 100%;
 }
 
+.tooltip {
+    position: fixed;
+    bottom: var(--font-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: var(--primary);
+    padding: var(--font-3xs) var(--font-sm);
+    border-radius: var(--font-3xs);
+    font-size: var(--font-sm);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 9999;
+}
+
+.tooltip.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-6px);
+}
+
+/* ? ======================== Navbar ========================= */
 nav {
     position: sticky;
     top: 0;
@@ -120,7 +142,7 @@ nav .icons {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-areas:
-        "to-do to-do planner planner"
+        "to-do to-do snapshot snapshot"
         "qoute timer timer goals";
     gap: var(--font-base);
      padding: var(--font-sm) var(--font-lg);
@@ -157,8 +179,8 @@ nav .icons {
     grid-area: to-do;
 }
 
-.planner {
-    grid-area: planner;
+.snapshot {
+    grid-area: snapshot;
 }
 
 .qoute {
@@ -389,4 +411,59 @@ nav .icons {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* ? ================= Quotes Page ================= */
+
+.quote-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote-wrap {
+    width: 100%;
+    max-width: 1080px;
+    padding: var(--font-2xl);
+}
+
+.quote-card {
+    background: var(--green);
+    border-radius: var(--font-sm);
+    padding: var(--font-4xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-xl);
+    box-shadow: 0 var(--font-lg) var(--font-4xl) rgba(0, 0, 0, 0.5);
+}
+
+.quote-text {
+    font-size: var(--font-2xl);
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.quote-author {
+    font-size: var(--font-base);
+    color: var(--accent);
+}
+
+.quote-actions {
+    display: flex;
+    gap: var(--font-3xs);
+    margin-top: var(--font-base);
+}
+
+.icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-size: var(--font-lg);
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.icon-btn:hover {
+    transform: translateY(-2px);
 }

@@ -29,10 +29,6 @@
                 <img src="images/to-do list.jpg" alt="to-do" />
                 <h2>To-Do List</h2>
             </div>
-            <div class="elem planner" data-page="planner" role="button" tabindex="0">
-                <img src="images/planner.jpg" alt="planner" />
-                <h2>Daily Planner</h2>
-            </div>
             <div class="elem qoute" data-page="quote" role="button" tabindex="0">
                 <img src="images/qoute.jpg" alt="qoute" />
                 <h2>Quote</h2>
@@ -41,13 +37,17 @@
                 <img src="images/timer.jpg" alt="timer" />
                 <h2>Pomodoro Timer</h2>
             </div>
+            <div class="elem snapshot" data-page="snapshot" role="button" tabindex="0">
+                <img src="images/planner.jpg" alt="snapshot" />
+                <h2>Daily Snapshots</h2>
+            </div>
             <div class="elem goals" data-page="goals" role="button" tabindex="0">
                 <img src="images/Goals.jpg" alt="goals" />
                 <h2>Daily Goals</h2>
             </div>
         </section>
         <!-- ? ========================== Bento Pages ====================== -->
-        <section class="bento-pages to-do-page" data-page="todo" tabindex="-1">
+        <section class="bento-pages to-do-page" data-page="todo" tabindex="-1" style="display: block;">
             <div class="todo-wrap">
                 <div class="todo-main">
                     <h1>Todo List</h1>
@@ -96,20 +96,37 @@
                 <i class="ri-close-large-line"></i>
             </button>
         </section>
-        <section class="bento-pages planner-page" data-page="planner" tabindex="-1">
-            <h1>Daily Planner</h1>
-            <button class="back" aria-label="Close">
-                <i class="ri-close-large-line"></i>
-            </button>
-        </section>
         <section class="bento-pages quote-page" data-page="quote" tabindex="-1">
-            <h1>Quotes</h1>
+            <div class="quote-wrap">
+                <div class="quote-card">
+                    <p class="quote-text"></p>
+                    <p class="quote-author"></p>
+
+                    <div class="quote-actions">
+                        <button class="icon-btn" aria-label="Refresh quote">
+                            <i class="ri-refresh-line"></i>
+                        </button>
+                        <button class="icon-btn" aria-label="Copy quote">
+                            <i class="ri-file-copy-line"></i>
+                        </button>
+                        <button class="icon-btn" aria-label="Like quote">
+                            <i></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
             <button class="back" aria-label="Close">
                 <i class="ri-close-large-line"></i>
             </button>
         </section>
         <section class="bento-pages timer-page" data-page="timer" tabindex="-1">
             <h1>Pomodoro Timer</h1>
+            <button class="back" aria-label="Close">
+                <i class="ri-close-large-line"></i>
+            </button>
+        </section>
+        <section class="bento-pages snapshot-page" data-page="snapshot" tabindex="-1">
+            <h1>Daily Snapshots</h1>
             <button class="back" aria-label="Close">
                 <i class="ri-close-large-line"></i>
             </button>
@@ -121,6 +138,7 @@
             </button>
         </section>
     </main>
+    <div id="tooltip" class="tooltip" hidden></div>
     <script src="script.js"></script>
 </body>
 
