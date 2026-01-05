@@ -120,11 +120,54 @@
             </button>
         </section>
         <section class="bento-pages timer-page" data-page="timer" tabindex="-1">
-            <h1>Pomodoro Timer</h1>
+            <div class="timer-wrap">
+
+                <!-- Mode Switch -->
+                <div class="timer-modes">
+                    <button class="mode active">Pomodoro</button>
+                    <button class="mode">Short Break</button>
+                    <button class="mode">Long Break</button>
+                </div>
+
+                <!-- Timer Display -->
+                <div class="timer-display">
+
+                    <!-- Minus -->
+                    <button class="time-adjust left">
+                        <i class="ri-subtract-line"></i>
+                    </button>
+
+                    <!-- Clock -->
+                    <div class="clock pomodoro-mode">
+                        <span class="time">25:00</span>
+                    </div>
+
+                    <!-- Plus -->
+                    <button class="time-adjust right">
+                        <i class="ri-add-line"></i>
+                    </button>
+                </div>
+
+                <!-- View Toggle -->
+                <div class="timer-view-toggle">
+                    <label>
+                        <input type="checkbox" />
+                        <span>Digital Clock</span>
+                    </label>
+                </div>
+
+                <!-- Controls -->
+                <div class="timer-controls">
+                    <button class="btn">Reset</button>
+                    <button class="btn primary">Start</button>
+                </div>
+            </div>
+
             <button class="back" aria-label="Close">
                 <i class="ri-close-large-line"></i>
             </button>
         </section>
+
         <section class="bento-pages snapshot-page" data-page="snapshot" tabindex="-1">
             <h1>Daily Snapshots</h1>
             <button class="back" aria-label="Close">

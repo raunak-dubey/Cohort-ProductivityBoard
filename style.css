@@ -16,21 +16,36 @@
     --rich-burgundy: #7f071e;
 
     /* * Font Sizes */
-    --font-3xs: 0.5rem; /* 8px */
-    --font-2xs: 0.625rem; /* 10px */
-    --font-xs: 0.75rem; /* 12px */
-    --font-sm: 0.875rem; /* 14px */
-    --font-base: 1rem; /* 16px (default) */
-    --font-lg: 1.25rem; /* 20px */
-    --font-xl: 1.5rem; /* 24px */
-    --font-2xl: 1.875rem; /* 30px */
-    --font-3xl: 2.25rem; /* 36px */
-    --font-4xl: 2.5rem; /* 40px */
-    --font-5xl: 3rem; /* 48px */
-    --font-6xl: 3.75rem; /* 60px */
-    --font-7xl: 4.5rem; /* 72px */
-    --font-8xl: 6rem; /* 96px */
-    --font-9xl: 8rem; /* 128px */
+    --font-3xs: 0.5rem;
+    /* 8px */
+    --font-2xs: 0.625rem;
+    /* 10px */
+    --font-xs: 0.75rem;
+    /* 12px */
+    --font-sm: 0.875rem;
+    /* 14px */
+    --font-base: 1rem;
+    /* 16px (default) */
+    --font-lg: 1.25rem;
+    /* 20px */
+    --font-xl: 1.5rem;
+    /* 24px */
+    --font-2xl: 1.875rem;
+    /* 30px */
+    --font-3xl: 2.25rem;
+    /* 36px */
+    --font-4xl: 2.5rem;
+    /* 40px */
+    --font-5xl: 3rem;
+    /* 48px */
+    --font-6xl: 3.75rem;
+    /* 60px */
+    --font-7xl: 4.5rem;
+    /* 72px */
+    --font-8xl: 6rem;
+    /* 96px */
+    --font-9xl: 8rem;
+    /* 128px */
 }
 
 @font-face {
@@ -111,6 +126,7 @@ nav {
     -webkit-backdrop-filter: blur(var(--font-xs));
     z-index: 10;
 }
+
 .nav-hidden {
     transform: translateY(-100%);
 }
@@ -145,7 +161,7 @@ nav .icons {
         "to-do to-do snapshot snapshot"
         "qoute timer timer goals";
     gap: var(--font-base);
-     padding: var(--font-sm) var(--font-lg);
+    padding: var(--font-sm) var(--font-lg);
 }
 
 .elem {
@@ -229,11 +245,13 @@ nav .icons {
     height: 100%;
     overflow: hidden;
 }
+
 .todo-main {
     display: flex;
     flex-direction: column;
 }
-.add-task input{
+
+.add-task input {
     padding: var(--font-3xs);
     border: none;
     background-color: transparent;
@@ -244,6 +262,7 @@ nav .icons {
     width: 50%;
     margin-top: var(--font-lg);
 }
+
 .todo-right {
     background-color: var(--accent);
     padding: var(--font-lg);
@@ -279,10 +298,12 @@ nav .icons {
     padding: var(--font-sm) var(--font-lg);
     cursor: pointer;
 }
-.task-list li #task-checkbox{
+
+.task-list li #task-checkbox {
     width: var(--font-base);
     height: var(--font-base);
 }
+
 .task-list li.completed span {
     text-decoration: line-through;
     opacity: 0.6;
@@ -407,6 +428,7 @@ nav .icons {
         opacity: 0;
         transform: translateY(4px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -479,4 +501,118 @@ nav .icons {
 
 .icon-btn:hover {
     transform: translateY(-2px);
+}
+
+/* ? ================= Pomodoro Timer ================= */
+
+/* Timer Page */
+
+.timer-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Wrapper */
+.timer-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--font-2xl);
+}
+
+/* ----------- Modes ----------------- */
+.timer-modes {
+    display: flex;
+    gap: var(--font-sm);
+}
+
+.mode {
+    padding: var(--font-3xs) var(--font-sm);
+    border-radius: var(--font-3xs);
+    border: none;
+    background: var(--accent);
+    color: var(--green);
+    cursor: pointer;
+    font-size: var(--font-sm);
+}
+
+.mode.active {
+    background: var(--green);
+    color: var(--primary);
+}
+
+/* ---------- Display ---------- */
+.timer-display {
+    display: flex;
+    align-items: center;
+    gap: var(--font-xl);
+}
+
+.time-adjust {
+    background: transparent;
+    border: none;
+    font-size: var(--font-3xl);
+    color: var(--green);
+    cursor: pointer;
+}
+
+/* ---------- Timer Clock ---------- */
+.clock {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: var(--green);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 var(--font-lg) var(--font-4xl) rgba(0, 0, 0, 0.35);
+}
+
+.clock .time {
+    font-size: var(--font-4xl);
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* ---------- Controls ---------- */
+.timer-controls {
+    display: flex;
+    gap: var(--font-sm);
+}
+
+.timer-controls .btn {
+    min-width: 90px;
+}
+
+/* Toggle */
+.timer-view-toggle {
+    font-size: var(--font-base);
+    opacity: 0.7;
+}
+
+/* @ --------------- Digital mode --------------- */
+.timer-page.digital-view {
+    background-color: var(--green);
+    height: 100vh;
+    width: 100%;
+    color: var(--primary);
+}
+
+.timer-page.digital-view .timer-modes,
+.timer-page.digital-view .timer-controls,
+.timer-page.digital-view .time-adjust {
+    display: none;
+}
+
+.timer-page.digital-view .clock {
+    background: transparent;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+}
+
+.timer-page.digital-view .clock .time {
+    font-size: var(--font-9xl);
+    font-family: monospace;
 }
