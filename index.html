@@ -66,8 +66,8 @@
                     <div class="task-empty">
                         <p>Select a task to view details</p>
                     </div>
-                    <div class="task-panel" style="display:none;">
-                        <input class="task-title" placeholder="Task title" />
+                    <div class="task-panel">
+                        <input class="task-title" id="task-title" name="task-title" placeholder="Task title" />
                         <textarea class="task-desc" name="desc" id="desc" placeholder="Description"></textarea>
 
                         <div class="task-meta">
@@ -139,7 +139,7 @@
         </section>
     </main>
     <div id="tooltip" class="tooltip" hidden></div>
-    <script src="script.js"></script>
+    <script type="module" src="scripts/app.js"></script>
 </body>
 
 </html>

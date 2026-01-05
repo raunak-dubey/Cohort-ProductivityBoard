@@ -306,7 +306,7 @@ nav .icons {
 
 /* Panel container */
 .task-panel {
-    display: flex;
+    display: none;
     flex-direction: column;
     gap: var(--font-base);
     height: 100%;
@@ -442,6 +442,19 @@ nav .icons {
     line-height: 1.5;
     font-weight: 500;
     color: var(--primary);
+}
+
+.quote-card.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.quote-card.loading .quote-text {
+    font-style: italic;
+}
+
+.quote-card.loading .quote-text::after {
+    content: ' ⏳';
 }
 
 .quote-author {
