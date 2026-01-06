@@ -4,9 +4,16 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description"
+        content="A minimal productivity dashboard with pomodoro timer, to-do list, daily quotes, and smart time display.">
     <title>Productivity Board</title>
-    <link rel="stylesheet" href="style.css" />
-    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" rel="stylesheet" />
+    <link rel="stylesheet" href="src/style.css" />
+    <link rel="preload" href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css" as="style"
+        onload="this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/remixicon@4.7.0/fonts/remixicon.css">
+    </noscript>
+
 </head>
 
 <body>
@@ -14,36 +21,62 @@
         <!-- ? ================== Navbar ==================== -->
         <nav>
             <h2>Dashboard</h2>
-            <div class="icons">
-                <i class="ri-notification-3-line"></i>
-                <i class="ri-t-shirt-fill"></i>
+            <div class="icons" aria-label="Navigation icons">
+                <button class="icon-btn" aria-label="Notifications">
+                    <i class="ri-notification-3-line"></i>
+                </button>
+
+                <button class="icon-btn" aria-label="Theme settings">
+                    <i class="ri-t-shirt-fill"></i>
+                </button>
             </div>
         </nav>
         <!-- ? ========================== Banner ======================== -->
-        <section id="banner">
-            <img src="images/banner.jpg" alt="banner" />
+        <section id="banner" class="banner-now">
+            <div class="banner-bg">
+                <img src="src/assets/images/banner.webp" alt="banner" fetchpriority="high" width="1920" height="1080"
+                    loading="eager" decoding="async" />
+            </div>
+
+            <div class="banner-overlay">
+                <div class="now-left">
+                    <div class="now-time"></div>
+
+                    <div class="now-date">
+                        <span class="day"></span>,
+                        <span class="date"></span>
+                        <span class="year"></span>
+                    </div>
+                </div>
+
+                <div class="now-right">
+                    <div class="weather">
+                        <i class="ri-sun-line weather-icon"></i>
+
+                        <div class="weather-info">
+                            <span class="temp"></span>
+                            <span class="city"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </section>
         <!-- ? ========================== Bento ======================== -->
         <section id="bento">
-            <div class="elem to-do" data-page="todo" role="button" tabindex="0">
-                <img src="images/to-do list.jpg" alt="to-do" />
-                <h2>To-Do List</h2>
-            </div>
-            <div class="elem qoute" data-page="quote" role="button" tabindex="0">
-                <img src="images/qoute.jpg" alt="qoute" />
-                <h2>Quote</h2>
-            </div>
             <div class="elem timer" data-page="timer" role="button" tabindex="0">
-                <img src="images/timer.jpg" alt="timer" />
+                <img src="src/assets/images/timer.webp" alt="timer" loading="lazy" decoding="async" />
                 <h2>Pomodoro Timer</h2>
             </div>
-            <div class="elem snapshot" data-page="snapshot" role="button" tabindex="0">
-                <img src="images/planner.jpg" alt="snapshot" />
-                <h2>Daily Snapshots</h2>
-            </div>
-            <div class="elem goals" data-page="goals" role="button" tabindex="0">
-                <img src="images/Goals.jpg" alt="goals" />
-                <h2>Daily Goals</h2>
+            <hr class="divider">
+            <div class="support">
+                <div class="elem to-do" data-page="todo" role="button" tabindex="0">
+                    <img src="src/assets/images/to-do list.webp" alt="to-do" loading="lazy" decoding="async" />
+                    <h2>To-Do List</h2>
+                </div>
+                <div class="elem qoute" data-page="quote" role="button" tabindex="0">
+                    <img src="src/assets/images/qoute.webp" alt="qoute" loading="lazy" decoding="async" />
+                    <h2>Quote</h2>
+                </div>
             </div>
         </section>
         <!-- ? ========================== Bento Pages ====================== -->
@@ -133,7 +166,7 @@
                 <div class="timer-display">
 
                     <!-- Minus -->
-                    <button class="time-adjust left">
+                    <button class="time-adjust left" aria-label="Decrease time">
                         <i class="ri-subtract-line"></i>
                     </button>
 
@@ -143,7 +176,7 @@
                     </div>
 
                     <!-- Plus -->
-                    <button class="time-adjust right">
+                    <button class="time-adjust right" aria-label="Increase time">
                         <i class="ri-add-line"></i>
                     </button>
                 </div>
@@ -167,22 +200,9 @@
                 <i class="ri-close-large-line"></i>
             </button>
         </section>
-
-        <section class="bento-pages snapshot-page" data-page="snapshot" tabindex="-1">
-            <h1>Daily Snapshots</h1>
-            <button class="back" aria-label="Close">
-                <i class="ri-close-large-line"></i>
-            </button>
-        </section>
-        <section class="bento-pages goals-page" data-page="goals" tabindex="-1">
-            <h1>Daily Goals</h1>
-            <button class="back" aria-label="Close">
-                <i class="ri-close-large-line"></i>
-            </button>
-        </section>
     </main>
     <div id="tooltip" class="tooltip" hidden></div>
-    <script type="module" src="scripts/app.js"></script>
+    <script type="module" src="src/scripts/app.js"></script>
 </body>
 
 </html>

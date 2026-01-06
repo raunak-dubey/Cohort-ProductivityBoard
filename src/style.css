@@ -1,0 +1,717 @@
+/* ? ============ Root Variable and Fonts ================= */
+:root {
+    /* * palette 1 */
+    --primary: #F0EDE5;
+    --glass: rgb(240, 237, 229, 0.8);
+    --green: #004643;
+    --accent: #e3e1da;
+
+    /* * palette 2 */
+    --brown: #4E1F00;
+
+    /* * palette 3 */
+    --rich-blue: #191265;
+
+    /* * palette 4 */
+    --rich-burgundy: #7f071e;
+
+    /* * Font Sizes */
+    --font-3xs: 0.5rem; /* 8px */
+    --font-2xs: 0.625rem; /* 10px */
+    --font-xs: 0.75rem; /* 12px */
+    --font-sm: 0.875rem; /* 14px */
+    --font-base: 1rem; /* 16px (default) */
+    --font-lg: 1.25rem; /* 20px */
+    --font-xl: 1.5rem; /* 24px */
+    --font-2xl: 1.875rem; /* 30px */
+    --font-3xl: 2.25rem; /* 36px */
+    --font-4xl: 2.5rem; /* 40px */
+    --font-5xl: 3rem; /* 48px */
+    --font-6xl: 3.75rem; /* 60px */
+    --font-7xl: 4.5rem; /* 72px */
+    --font-8xl: 6rem; /* 96px */
+    --font-9xl: 8rem; /* 128px */
+}
+
+@font-face {
+    font-family: Aeonik;
+    src: url(assets/fonts/AeonikTRIAL-Light.woff2) format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Aeonik;
+    src: url(assets/fonts/AeonikTRIAL-Regular.woff2) format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: Aeonik;
+    src: url(assets/fonts/AeonikTRIAL-Bold.woff2) format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ? ============ Global Css ================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    background-color: var(--primary);
+    color: var(--green);
+    height: 100%;
+    width: 100%;
+    font-family: Aeonik, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+main {
+    position: relative;
+    min-height: 100vh;
+    width: 100%;
+}
+
+.tooltip {
+    position: fixed;
+    bottom: var(--font-xl);
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--green);
+    color: var(--primary);
+    padding: var(--font-3xs) var(--font-sm);
+    border-radius: var(--font-3xs);
+    font-size: var(--font-sm);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 9999;
+}
+
+.tooltip.show {
+    opacity: 1;
+    transform: translateX(-50%) translateY(-6px);
+}
+
+/* ? ======================== Navbar ========================= */
+nav {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    background-color: var(--glass);
+    color: var(--green);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--font-sm) var(--font-lg);
+    transition: transform 0.3s ease-in-out, background-color 0.3s ease;
+    z-index: 10;
+}
+
+.nav-hidden {
+    transform: translateY(-100%);
+}
+nav .icons{
+    display: flex;
+    gap: var(--font-lg);
+}
+nav .icons .icon-btn {
+    cursor: pointer;
+    font-size: var(--font-lg);
+    color: var(--green);
+    border: none;
+    background: transparent;
+}
+
+/* ? ================ Banner ================== */
+#banner {
+    position: relative;
+    min-height: 20rem;
+    max-height: 32.5rem;
+    height: 45vh;
+    border-radius: var(--font-base);
+    margin: 0 var(--font-lg) var(--font-xl);
+    color: var(--primary);
+}
+
+.banner-bg {
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+}
+
+.banner-bg img {
+    object-position: center;
+     width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: inherit;
+    display: block;
+}
+
+.banner-bg::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.15),
+        rgba(0, 0, 0, 0.45)
+    );
+}
+
+/* Content overlay */
+.banner-overlay {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    padding: var(--font-4xl) var(--font-2xl);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    color: var(--primary);
+}
+
+/* -------- Time & Date -------- */
+
+.now-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-sm);
+}
+
+.now-time {
+    font-size: clamp(4rem, 7vw, 6.5rem);
+    font-weight: 600;
+    letter-spacing: -0.04em;
+    line-height: 1;
+}
+
+.now-date {
+    display: flex;
+    align-items: center;
+    gap: var(--font-2xs);
+    font-size: var(--font-lg);
+    opacity: 0.85;
+}
+
+.now-date .year {
+    opacity: 0.6;
+}
+
+.now-date .dot {
+    opacity: 0.4;
+}
+
+/* -------- Weather -------- */
+
+.now-right {
+    display: flex;
+    align-items: center;
+}
+
+.weather {
+    display: flex;
+    align-items: center;
+    gap: var(--font-sm);
+}
+
+.weather-icon {
+    font-size: var(--font-3xl);
+    opacity: 0.9;
+}
+
+.weather-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.15;
+}
+
+.weather-info .temp {
+    font-size: var(--font-xl);
+    font-weight: 500;
+}
+
+.weather-info .city {
+    font-size: var(--font-sm);
+    opacity: 0.7;
+}
+
+/* -------- Responsive -------- */
+
+@media (max-width: 768px) {
+    .banner-overlay {
+        padding: var(--font-3xl) var(--font-lg);
+        flex-direction: column;
+        align-items: flex-start;
+        gap: var(--font-2xl);
+    }
+
+    .now-time {
+        font-size: clamp(3rem, 12vw, 5rem);
+    }
+}
+
+/* ? ================== Bento ==================== */
+#bento {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-base);
+    padding: var(--font-sm) var(--font-lg);
+}
+
+.elem {
+    position: relative;
+    height: 21rem;
+    user-select: none;
+    border-radius: var(--font-base);
+    overflow: hidden;
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.elem img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    pointer-events: none;
+}
+
+.elem h2 {
+    position: absolute;
+    bottom: var(--font-base);
+    right: var(--font-base);
+}
+
+.elem:active {
+    scale: 0.97;
+}
+
+.timer {
+    height: 60vh;
+}
+
+.divider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.06);
+}
+
+.support {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--font-4xl);
+}
+
+/* ? ======================== Bento Pages ========================= */
+.bento-pages {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    font-size: var(--font-2xl);
+    display: flex;
+    z-index: 99;
+    background-color: var(--primary);
+    justify-content: space-between;
+    align-items: center;
+    padding: var(--font-sm) var(--font-lg);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(10px);
+    transition: 0.25s ease;
+}
+
+.bento-pages.active {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0);
+}
+
+/* ? ======================== Todo Page ======================== */
+.todo-wrap {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.todo-main {
+    display: flex;
+    flex-direction: column;
+}
+
+.add-task input {
+    padding: var(--font-3xs);
+    border: none;
+    background-color: transparent;
+    border-bottom: 2px solid var(--green);
+    outline: none;
+    font-size: var(--font-lg);
+    color: var(--green);
+    width: 50%;
+    margin-top: var(--font-lg);
+}
+
+.todo-right {
+    background-color: var(--accent);
+    padding: var(--font-lg);
+}
+
+.back {
+    position: absolute;
+    top: var(--font-lg);
+    right: var(--font-lg);
+    font-size: var(--font-xl);
+    cursor: pointer;
+    background: transparent;
+    z-index: 100;
+    border: none;
+}
+
+.task-list {
+    margin-top: var(--font-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-sm);
+    overflow-y: auto;
+    padding-right: var(--font-sm);
+}
+
+.task-list li {
+    display: flex;
+    align-items: center;
+    gap: var(--font-lg);
+    list-style: none;
+    border-radius: var(--font-sm);
+    background-color: var(--accent);
+    padding: var(--font-sm) var(--font-lg);
+    cursor: pointer;
+}
+
+.task-list li #task-checkbox {
+    width: var(--font-base);
+    height: var(--font-base);
+}
+
+.task-list li.completed span {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* Empty state */
+.task-empty {
+    height: 100%;
+    display: grid;
+    place-items: center;
+    color: rgba(0, 70, 67, 0.5);
+    font-size: var(--font-base);
+    text-align: center;
+}
+
+.task-list-empty {
+    margin-top: var(--font-xl);
+    font-size: var(--font-sm);
+    color: rgba(0, 70, 67, 0.5);
+}
+
+/* Panel container */
+.task-panel {
+    display: none;
+    flex-direction: column;
+    gap: var(--font-base);
+    height: 100%;
+    animation: fadeIn 0.2s ease;
+}
+
+/* Title */
+.task-title {
+    font-size: var(--font-xl);
+    border: none;
+    outline: none;
+    background: transparent;
+    font-weight: 600;
+    color: var(--green);
+}
+
+/* Description */
+.task-desc {
+    resize: none;
+    border-radius: var(--font-sm);
+    padding: var(--font-sm);
+    border: 1px solid rgba(0, 70, 67, 0.2);
+    font-size: var(--font-sm);
+    min-height: 100px;
+    background: transparent;
+}
+
+/* Meta */
+.task-meta {
+    display: flex;
+    gap: var(--font-base);
+}
+
+.task-meta label {
+    display: flex;
+    flex-direction: column;
+    font-size: var(--font-xs);
+    gap: var(--font-3xs);
+}
+
+.task-meta select,
+.task-meta input {
+    padding: var(--font-3xs);
+    border-radius: var(--font-3xs);
+    border: 1px solid rgba(0, 70, 67, 0.3);
+    background: transparent;
+}
+
+/* Tags */
+.tag-list {
+    display: flex;
+    gap: var(--font-3xs);
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: 4px 8px;
+    border-radius: var(--font-3xs);
+    font-size: var(--font-base);
+    display: flex;
+    align-items: center;
+    background-color: rgba(0, 70, 67, 0.15);
+}
+
+/* Actions */
+.task-actions {
+    margin-top: auto;
+    display: flex;
+    gap: var(--font-sm);
+}
+
+.btn {
+    padding: var(--font-3xs) var(--font-sm);
+    border-radius: var(--font-3xs);
+    border: none;
+    cursor: pointer;
+    font-size: var(--font-sm);
+}
+
+.btn.primary {
+    background-color: var(--green);
+    color: var(--primary);
+}
+
+.btn.delete {
+    background: transparent;
+    color: var(--rich-burgundy);
+}
+
+/* Selected task */
+.task-list li.active {
+    background-color: rgba(0, 70, 67, 0.15);
+}
+
+/* Animation */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(4px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ? ================= Quotes Page ================= */
+
+.quote-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.quote-wrap {
+    width: 100%;
+    max-width: 1080px;
+    padding: var(--font-2xl);
+}
+
+.quote-card {
+    background: var(--green);
+    border-radius: var(--font-sm);
+    padding: var(--font-4xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--font-xl);
+    box-shadow: 0 var(--font-lg) var(--font-4xl) rgba(0, 0, 0, 0.5);
+}
+
+.quote-text {
+    font-size: var(--font-2xl);
+    line-height: 1.5;
+    font-weight: 500;
+    color: var(--primary);
+}
+
+.quote-card.loading {
+    opacity: 0.6;
+    pointer-events: none;
+}
+
+.quote-card.loading .quote-text {
+    font-style: italic;
+}
+
+.quote-card.loading .quote-text::after {
+    content: ' ⏳';
+}
+
+.quote-author {
+    font-size: var(--font-base);
+    color: var(--accent);
+}
+
+.quote-actions {
+    display: flex;
+    gap: var(--font-3xs);
+    margin-top: var(--font-base);
+}
+
+.quote-actions .icon-btn {
+    background: transparent;
+    border: none;
+    color: var(--accent);
+    font-size: var(--font-lg);
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.quote-actions .icon-btn:hover {
+    transform: translateY(-2px);
+}
+
+/* ? ================= Pomodoro Timer ================= */
+
+/* Timer Page */
+
+.timer-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Wrapper */
+.timer-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--font-2xl);
+}
+
+/* ----------- Modes ----------------- */
+.timer-modes {
+    display: flex;
+    gap: var(--font-sm);
+}
+
+.mode {
+    padding: var(--font-3xs) var(--font-sm);
+    border-radius: var(--font-3xs);
+    border: none;
+    background: var(--accent);
+    color: var(--green);
+    cursor: pointer;
+    font-size: var(--font-sm);
+}
+
+.mode.active {
+    background: var(--green);
+    color: var(--primary);
+}
+
+/* ---------- Display ---------- */
+.timer-display {
+    display: flex;
+    align-items: center;
+    gap: var(--font-xl);
+}
+
+.time-adjust {
+    background: transparent;
+    border: none;
+    font-size: var(--font-3xl);
+    color: var(--green);
+    cursor: pointer;
+}
+
+/* ---------- Timer Clock ---------- */
+.clock {
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    background: var(--green);
+    display: grid;
+    place-items: center;
+    box-shadow: 0 var(--font-lg) var(--font-4xl) rgba(0, 0, 0, 0.35);
+}
+
+.clock .time {
+    font-size: var(--font-4xl);
+    font-weight: 600;
+    color: var(--primary);
+}
+
+/* ---------- Controls ---------- */
+.timer-controls {
+    display: flex;
+    gap: var(--font-sm);
+}
+
+.timer-controls .btn {
+    min-width: 90px;
+}
+
+/* Toggle */
+.timer-view-toggle {
+    font-size: var(--font-base);
+    opacity: 0.7;
+}
+
+/* @ --------------- Digital mode --------------- */
+.timer-page.digital-view {
+    background-color: var(--green);
+    height: 100dvh;
+    width: 100%;
+    color: var(--primary);
+}
+
+.timer-page.digital-view .timer-modes,
+.timer-page.digital-view .timer-controls,
+.timer-page.digital-view .time-adjust {
+    display: none;
+}
+
+.timer-page.digital-view .clock {
+    background: transparent;
+    box-shadow: none;
+    width: auto;
+    height: auto;
+    border-radius: 0;
+}
+
+.timer-page.digital-view .clock .time {
+    font-size: var(--font-9xl);
+}
