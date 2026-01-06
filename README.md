@@ -4,7 +4,7 @@ A modern, distraction-free **Productivity Board** built with **Vanilla JavaScrip
 
 This project focuses on **performance, accessibility, and user experience**, following industry best practices and optimized using Lighthouse.
 
-🔗 **Live Demo (GitHub Pages):** [https://raunak-dubey.github.io/Cohort-ProductivityBoard/](https://raunak-dubey.github.io/Cohort-ProductivityBoard/)
+🔗 **Live Demo (Vercel):** [https://cohort-productivity-board.vercel.app/](https://cohort-productivity-board.vercel.app/)
 
 ---
 
@@ -75,6 +75,7 @@ VITE_WEATHER_API_KEY=your_weatherapi_key_here
 
 ## 🌍 Weather & Location Handling
 
+- You need your api key to use weather feature
 - Uses `navigator.geolocation` **after user interaction** (to avoid UX & Lighthouse issues)
 - Falls back gracefully if permission is denied
 - No hardcoded city — fully dynamic
